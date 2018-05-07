@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: thierry
- * Date: 07/05/18
- * Time: 09:36
- */
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
