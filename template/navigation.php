@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-expand-xl navbar-dark bg-dark">
 
 
@@ -37,20 +40,48 @@ $nomFichier= implode(" ",$Fichier);
 <?php
     }
     }
+    if(isset($_SESSION['pseudo'])){ ?>
+
+
+        <li class="nav-item bs-tooltip-right bs-popover-right">
+
+
+            <form method="get" class="form-inline" action="../script/deconnexion.php ">
+
+
+
+                <input type="submit" value="deconnexion" >
+            </form>
+
+        </li>
+
+<?php
+
+    }else{ ?>
+
+        <li class="nav-item bs-tooltip-right bs-popover-right">
+
+
+            <form method="post" class="form-inline" action="../script/connexion.php">
+
+                <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
+                <label for="mdp">Mot de passe</label> : <input type="text" name="mdp" id="mdp" class="form-control mr-sm-2">
+
+                <input type="submit" value="Connexion" >
+            </form>
+
+        </li>
+
+
+
+
+
+        <?php
+    }
     ?>
 
-<li class="nav-item bs-tooltip-right bs-popover-right">
 
 
-    <form method="post" class="form-inline">
-
-        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
-        <label for="Mdp">Mot de passe</label> : <input type="text" name="Mdp" id="Mdp" class="form-control mr-sm-2">
-
-        <input type="submit" value="Connexion" >
-    </form>
-
-</li>
 </ul>
 
 </nav>
