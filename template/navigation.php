@@ -13,18 +13,20 @@
     //je parcours mon dossier
     foreach ($dossier as $fichiers){
 
-  //j'enleve de la vue l'extension
+  //gestion de l'affichage de mon url sans l'extenssion
  $Ressource = basename($fichiers,'.php');
+
+ //j'enleve de la vue l'extension et je remplace les underscore par des espace
  $Fichier =explode("_",basename($fichiers,'.php'));
 $nomFichier= implode(" ",$Fichier);
 
- //si j'enleve de la vue les dossier contenant des points
+ //si il y a des dossier avec des points,je les enleves de la vue
     if(!in_array($fichiers,array(".",".."))) {
 
+
+
 //au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php)
-//pour plus de sécurité j'enleve l'extension de l'url
-
-
+//pour plus de sécurité j'ai enlever l'extension de l'url
 ?><li class="nav-item">
 
                 <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link" ><?php echo $nomFichier; ?></a>
