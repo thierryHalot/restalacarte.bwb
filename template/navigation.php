@@ -39,6 +39,18 @@ $nomFichier= implode(" ",$Fichier);
     }
     ?>
 
+<li class="nav-item bs-tooltip-right bs-popover-right">
+
+
+    <form method="post" class="form-inline">
+
+        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
+        <label for="Mdp">Mot de passe</label> : <input type="text" name="Mdp" id="Mdp" class="form-control mr-sm-2">
+
+        <input type="submit" value="Connexion" >
+    </form>
+
+</li>
 </ul>
 
 </nav>
