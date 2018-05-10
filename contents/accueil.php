@@ -1,7 +1,2 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: thierry
- * Date: 07/05/18
- * Time: 11:40
- */
+
+<h1>accueil</h1>

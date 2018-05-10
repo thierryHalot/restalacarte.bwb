@@ -25,9 +25,10 @@ $nomFichier= implode(" ",$Fichier);
 
 
 
-//au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php)
+//au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php),la resoource vient ce stocker dans la clé
 //pour plus de sécurité j'ai enlever l'extension de l'url
 ?><li class="nav-item">
+
 
                 <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link" ><?php echo $nomFichier; ?></a>
 
