@@ -1,0 +1,27 @@
+.forLivreDor{
+
+    border: 1px solid black;
+    width: 100%;
+    padding: 20px;
+
+
+}
+.inpLivreDor{
+    width: 60%;
+    float: right;
+}
+.textaLivreDor{
+
+    width: 100%;
+    height: 150px;
+}
+.bouton{
+
+   margin-left: 80%;
+}
+.test{
+    margin-right: 50px;
+    border: 1px solid black;
+
+    word-wrap : break-word;
+}
