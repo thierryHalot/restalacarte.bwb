@@ -1,6 +1,7 @@
 <?php
 $listeDeMessages = array();
 
+//je definis un message
 $message = array(
 
         "nom" => $_POST['nomLivreDor'],
@@ -9,5 +10,14 @@ $message = array(
 
 
 );
+
+array_push($listeDeMessages,$message);
+
+$messageEncoder = json_encode($listeDeMessages);
+
+
+$ecritureFichier = file_put_contents('../data/message.json',$messageEncoder);
+
+
 
 

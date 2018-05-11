@@ -3,6 +3,7 @@
 
 <?php
 if (isset($_SESSION['pseudo'])) {
+
     ?>
  <div class="col-5">
     <form method="post" action="../script/livreDor.php" class="forLivreDor">
