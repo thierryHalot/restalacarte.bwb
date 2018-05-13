@@ -1,0 +1,124 @@
+<?php
+
+//fonction pour afficher la bar de nav
+function getNav(){
+    ?>
+    <nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-expand-xl navbar-dark bg-dark">
+
+
+        <ul class="navbar-nav mr-auto">
+
+    <?php
+//chemin vers les dossier qui m'interresse
+    $cheminDossier = './contents';
+
+    //stoque mes dossiers
+    $dossier = scandir($cheminDossier);
+
+    //je parcours mon dossier
+    foreach ($dossier as $fichiers){
+
+  //gestion de l'affichage de mon url sans l'extenssion
+ $Ressource = basename($fichiers,'.php');
+
+ //j'enleve de la vue l'extension et je remplace les underscore par des espace
+ $Fichier =explode("_",basename($fichiers,'.php'));
+$nomFichier= implode(" ",$Fichier);
+
+ //si il y a des dossier avec des points,je les enleves de la vue
+    if(!in_array($fichiers,array(".",".."))) {
+
+
+//au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php),la resoource vient ce stocker dans la clé
+//pour plus de sécurité j'ai enlever l'extension de l'url
+?><li class="nav-item">
+                <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link" ><?php echo $nomFichier; ?></a>
+        </li>
+<?php
+    }
+    }
+    if(isset($_SESSION['pseudo'])){ ?>
+        <li class="nav-item bs-tooltip-right bs-popover-right">
+            <form method="get" class="form-inline" action="../script/deconnexion.php ">
+                <input type="submit" value="deconnexion" >
+            </form>
+        </li>
+<?php }else{ ?>
+        <li class="nav-item bs-tooltip-right bs-popover-right">
+            <form method="post" class="form-inline" action="../script/connexion.php">
+                <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
+                <label for="mdp">Mot de passe</label> : <input type="text" name="mdp" id="mdp" class="form-control mr-sm-2">
+                <input type="submit" value="Connexion" >
+            </form>
+        </li>
+        <?php
+    }
+    ?>
+</ul>
+</nav>
+  <?php
+}
+?>
+
+
+<?php
+//fonction qui permet de d'afficher le bon contenu correspondant au ancre de ma barre nav
+function getNavContent(){
+
+
+    //si ma clé 'chemin' existe dans l'url
+    if(isset($_GET['chemin'])){
+
+//j'insere le contenu de la page qui m'interresse en rajoutant l'extension
+        include "contents/".$_GET['chemin'].".php";
+
+    }
+
+}
+
+function getFormLivreDor (){
+
+
+    ?>
+    <div class="row">
+    <?php
+    if (isset($_SESSION['pseudo'])) {
+
+        ?>
+        <div class="col-5">
+            <form method="post" action="../script/encode.php" class="forLivreDor">
+                <label for="nomLivreDor">Votre nom</label> : <input type="text" name="nomLivreDor" id="nomLivreDor" class="inpLivreDor"/><br/>
+                <label for="prenomLivreDor">Votre prenom</label> : <input type="text" name="prenomLivreDor" id="prenomLivreDor"class="inpLivreDor"/><br/>
+                <p>
+                    <label for="messageLivreDor">message : </label><br/>
+                    <textarea name="messageLivreDor" id="messageLivreDor" class="textaLivreDor"></textarea>
+                </p>
+                <input type="submit" value="Envoyer" class="bouton"/>
+            </form>
+        </div>
+        <?php
+    };
+    include $_SERVER['DOCUMENT_ROOT'].'/script/decode.php';
+    ?>
+    <div class="col-5 test">
+        <?php
+
+        foreach ($fichierDecoder as $key => $value){
+
+
+
+            foreach ($value as $key1 => $value1){
+
+
+                echo $key1." : ".$value1."<br>";
+
+
+            }
+
+
+        }?>
+    </div>
+</div>
+
+<?php
+}
