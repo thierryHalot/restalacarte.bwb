@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+header('Location: http://www.php-decouverte.bwb/?chemin=livre_d_or');
 include $_SERVER['DOCUMENT_ROOT'].'/script/decodeUsers.php';
 
 
@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/script/decodeUsers.php';
 
                         $_SESSION['pseudo'] = $_POST['pseudo'];
                         $_SESSION['mdp'] = $_POST['mdp'];
-                        var_dump($_POST['pseudo']);
+                        $_SESSION['mail'] = $_POST['mailInscription'];
                     }
 
             //echo $key1." : ".$value1."<br>";

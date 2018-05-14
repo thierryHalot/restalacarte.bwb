@@ -47,7 +47,7 @@ $nomFichier= implode(" ",$Fichier);
         <li class="nav-item bs-tooltip-right bs-popover-right">
             <form method="post" class="form-inline" action="../script/connexion.php">
                 <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
-                <label for="mdp">Mot de passe</label> : <input type="text" name="mdp" id="mdp" class="form-control mr-sm-2">
+                <label for="mdp">Mot de passe</label> : <input type="password" name="mdp" id="mdp" class="form-control mr-sm-2">
                 <input type="submit" value="Connexion" >
             </form>
         </li>
@@ -114,9 +114,11 @@ function getFormLivreDor (){
 
 
             }
-
+?><hr> <?php
 
         }?>
+
+
     </div>
 </div>
 
@@ -132,7 +134,7 @@ function addUser(){
 
         "Pseudo" => $_POST['pseudoInscription'],
         "mdp" => $_POST['mdpInscription'],
-
+        "mail" => $_POST['mailInscription'],
     );
 
     $fichierUsers = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/data/users.json',true);

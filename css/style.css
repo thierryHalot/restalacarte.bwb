@@ -17,11 +17,29 @@
 }
 .bouton{
 
-   margin-left: 80%;
+   margin-left: 70%;
 }
 .test{
     margin-right: 50px;
     border: 1px solid black;
 
     word-wrap : break-word;
+}
+.formInscr{
+
+    margin-top: 10%;
+
+}
+
+.inpInscrip{
+    width: 50%;
+
+}
+.labelInscrip{
+
+    width: 40%;
+}
+hr{
+
+    border: 2px solid blue;
 }
