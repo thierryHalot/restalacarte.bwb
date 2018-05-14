@@ -16,27 +16,31 @@ function getNav(){
     $dossier = scandir($cheminDossier);
 
     //je parcours mon dossier
-    foreach ($dossier as $fichiers){
+    foreach ($dossier as $fichiers) {
 
-  //gestion de l'affichage de mon url sans l'extenssion
- $Ressource = basename($fichiers,'.php');
 
- //j'enleve de la vue l'extension et je remplace les underscore par des espace
- $Fichier =explode("_",basename($fichiers,'.php'));
-$nomFichier= implode(" ",$Fichier);
+        //gestion de l'affichage de mon url sans l'extenssion
+        $Ressource = basename($fichiers, '.php');
 
- //si il y a des dossier avec des points,je les enleves de la vue
-    if(!in_array($fichiers,array(".",".."))) {
+        //j'enleve de la vue l'extension et je remplace les underscore par des espace
+        $Fichier = explode("_", basename($fichiers, '.php'));
+        $nomFichier = implode(" ", $Fichier);
+
+        //si il y a des dossier avec des points,je les enleves de la vue
+        if (!in_array($fichiers, array(".", ".."))) {
+
 
 
 //au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php),la resoource vient ce stocker dans la clé
 //pour plus de sécurité j'ai enlever l'extension de l'url
-?><li class="nav-item">
-                <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link" ><?php echo $nomFichier; ?></a>
-        </li>
-<?php
-    }
-    }
+                ?>
+                <li class="nav-item">
+                    <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link"><?php echo $nomFichier; ?></a>
+                </li>
+                <?php
+            }
+        }
+
     if(isset($_SESSION['pseudo'])){ ?>
         <li class="nav-item bs-tooltip-right bs-popover-right">
             <form method="get" class="form-inline" action="../script/deconnexion.php ">
@@ -125,17 +129,10 @@ function getFormLivreDor (){
 <?php
 }
 
+//fonction qui permet de rajouter un nouvelle uttilisateur dans la bdd
+function addUser($user){
 
-function addUser(){
 
-
-
-    $user = array (
-
-        "Pseudo" => $_POST['pseudoInscription'],
-        "mdp" => $_POST['mdpInscription'],
-        "mail" => $_POST['mailInscription'],
-    );
 
     $fichierUsers = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/data/users.json',true);
 
@@ -180,6 +177,31 @@ function addUser(){
 
 //je redirige l'uttilisateur vers le l'accueil (php(point de vue serveur) crée le contenue du livre d'or et l'envoie sur l'index,le navigateur affiche le contenus !!!!)
 
+
+
+
+}
+
+//function qui permet de vérifier si le nom d'uttilisateur et le mot de passe taper a la connexion correspond avec la bdd
+function getUser($username,$mdp){
+
+    include $_SERVER['DOCUMENT_ROOT'].'/script/decodeUsers.php';
+
+    foreach ($fichierDecoderUsers as  $value) {
+
+
+
+
+        if ($username === $value['Pseudo'] && $mdp === $value['mdp'] ) {
+
+            $_SESSION['pseudo'] = $username;
+            $_SESSION['mdp'] = $mdp;
+
+        }
+
+        //echo $key1." : ".$value1."<br>";
+
+    }
 
 
 

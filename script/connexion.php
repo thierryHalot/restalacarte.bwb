@@ -1,24 +1,12 @@
 <?php
 session_start();
 header('Location: http://www.php-decouverte.bwb/?chemin=livre_d_or');
-include $_SERVER['DOCUMENT_ROOT'].'/script/decodeUsers.php';
 
+require_once "fonction.php";
 
-    foreach ($fichierDecoderUsers as  $value) {
+getUser($_POST['pseudo'],$_POST['mdp']);
 
-
-
-
-                if ($_POST['pseudo'] === $value['Pseudo'] && $_POST['mdp'] === $value['mdp'] ) {
-
-                        $_SESSION['pseudo'] = $_POST['pseudo'];
-                        $_SESSION['mdp'] = $_POST['mdp'];
-                        $_SESSION['mail'] = $_POST['mailInscription'];
-                    }
-
-            //echo $key1." : ".$value1."<br>";
-
-    }
+echo $_SESSION['pseudo'];
 
 //$_SESSION['pseudo'] = $_POST['pseudo'];
 //$_SESSION['mdp'] = $_POST['mdp'];
