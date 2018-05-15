@@ -10,14 +10,13 @@ function getNav(){
 
     <?php
 //chemin vers les dossier qui m'interresse
-    $cheminDossier = './contents';
+    $cheminDossier = $_SERVER['DOCUMENT_ROOT'] . '/contents';
 
-    //stoque mes dossiers
+    //stoque mes dossiers (scan-dir me retourne que du texte mais n'indique pas pour autent le chemin dans une boucle foreach)
     $dossier = scandir($cheminDossier);
 
     //je parcours mon dossier
     foreach ($dossier as $fichiers) {
-
 
         //gestion de l'affichage de mon url sans l'extenssion
         $Ressource = basename($fichiers, '.php');
@@ -26,21 +25,50 @@ function getNav(){
         $Fichier = explode("_", basename($fichiers, '.php'));
         $nomFichier = implode(" ", $Fichier);
 
-        //si il y a des dossier avec des points,je les enleves de la vue
-        if (!in_array($fichiers, array(".", ".."))) {
 
+            //si il y a des dossier avec des points,je les enleves de la vue
+            if (!in_array($fichiers, array(".", ".."))) {
 
+                //si c'est pas un dossier (is_dir prend en argument le chemin de mon dossier)
+                //DIRECTORY_SEPARATOR s'apadapte suivant l'os uttilisé et uttiisera le séparateur adequate
+                if (!is_dir($cheminDossier . DIRECTORY_SEPARATOR . $fichiers)) {
 
-//au click je cible index.php dans l'url ,je defini ma clé et la ressouce qui m'interrese (ex ?chemin=contact.php),la resoource vient ce stocker dans la clé
+//au click je cible index.php dans l'url ,je defini ma clé et la ressource qui m'interrese (ex ?chemin=contact.php),la resoource vient ce stocker dans la clé
 //pour plus de sécurité j'ai enlever l'extension de l'url
                 ?>
                 <li class="nav-item">
                     <a href="?chemin=<?php echo $Ressource; ?>" class="nav-link"><?php echo $nomFichier; ?></a>
                 </li>
                 <?php
-            }
-        }
+            }else if (is_dir($cheminDossier . DIRECTORY_SEPARATOR . $fichiers)) {
 
+
+                    ?>
+                    <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo $nomFichier; ?>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <?php
+
+                    $sousDossier = scandir($cheminDossier . DIRECTORY_SEPARATOR . $fichiers);
+
+                    foreach ($sousDossier as $contenu) {
+
+                        if (!in_array($contenu, array(".", ".."))) {
+
+                            ?>
+
+                                <a class="dropdown-item" href="#"> <?php echo $contenu; ?> </a>
+
+                            <?php
+                        }
+                    }
+                }
+        }
+    }
+    ?></div></div><?php
     if(isset($_SESSION['pseudo'])){ ?>
         <li class="nav-item bs-tooltip-right bs-popover-right">
             <form method="get" class="form-inline" action="../script/deconnexion.php ">
@@ -55,6 +83,7 @@ function getNav(){
                 <input type="submit" value="Connexion" >
             </form>
         </li>
+
         <?php
     }
     ?>
