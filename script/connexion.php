@@ -1,6 +1,6 @@
 <?php
 session_start();
-header('Location: http://www.php-decouverte.bwb/?chemin=livre_d_or');
+header('Location: http://http://www.restalacarte.bwb/?chemin=livre_d_or');
 
 require_once "fonction.php";
 

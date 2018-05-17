@@ -67,6 +67,6 @@ $message = array(
 
     }
 //je redirige l'uttilisateur vers le livre d'or (php(point de vue serveur) crée le contenue du livre d'or et l'envoie sur l'index,le navigateur affiche le contenus !!!!)
-header('Location: http://www.php-decouverte.bwb/?chemin=livre_d_or');
+header('Location: http://www.restalacarte.bwb/?chemin=livre_d_or');
 
 

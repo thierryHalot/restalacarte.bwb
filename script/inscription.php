@@ -1,6 +1,5 @@
 <?php
-
-//header('Location:http://www.php-decouverte.bwb/');
+//session_start();
 require "fonction.php";
 
 $user = array (
@@ -10,11 +9,11 @@ $user = array (
     "mail" => $_POST['mailInscription'],
 );
 
-
+header('Location:http://www.restalacarte.bwb/?chemin=inscription');
 
 if(verifUser($_POST['pseudoInscription'])){
-
-echo "salut";
+    //$_SESSION['USER_EXIST'] = true;
+    header('Location:http://www.restalacarte.bwb/?chemin=inscription&exist=true');
 
 }else{
 
@@ -34,9 +33,8 @@ function verifUser($userPseudo){
 
     $fichierDecoderUsers = json_decode($contenuFichierUsers, true);
 
-var_dump($fichierDecoderUsers);
     foreach ($fichierDecoderUsers as $value) {
-        if (empty($userPseudo)== true) {
+        if (!empty($userPseudo)) {
             if ($userPseudo === $value['Pseudo']) {
 
                 return true;

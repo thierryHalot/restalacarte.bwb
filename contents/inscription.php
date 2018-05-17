@@ -9,3 +9,6 @@
 
     </form>
 </div>
+<?php if(isset($_GET)&&   $_GET['exist']):?>
+    l'utilisateur existe deja
+<?php endif; ?>

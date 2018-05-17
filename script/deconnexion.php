@@ -4,6 +4,6 @@ if (isset($_SESSION['pseudo'])){
 
 
     session_destroy();
-    header('Location: http://www.php-decouverte.bwb/');
+    header('Location: http://www.restalacarte.bwb/');
 
 }
