@@ -112,7 +112,9 @@ function decodeJsonFile ($cheminFichier){
 
     $recuperationFichier = file_get_contents($_SERVER['DOCUMENT_ROOT'].$cheminFichier,true);
 
-    $fichierDecoder = json_decode($recuperationFichier);
+    //important true permet de decode notre fichier sous forme de tableau associatif
+    //sinon c'est decoder sous forme d'objet
+    $fichierDecoder = json_decode($recuperationFichier,true);
 
     return $fichierDecoder;
 
@@ -301,9 +303,8 @@ function getUser($username,$mdp){
 
     $fichierDecoderUsers = decodeJsonFile('/data/users.json');
 
-    foreach ($fichierDecoderUsers as  $value) {
 
-
+    foreach ($fichierDecoderUsers as $value ) {
 
 
         if ($username === $value['Pseudo'] && $mdp === $value['mdp'] ) {
