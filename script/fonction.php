@@ -69,13 +69,24 @@ function getNav(){
         }
     }
     ?></div></div><?php
-    if(isset($_SESSION['pseudo'])){ ?>
+
+            getformNavCo();
+    ?>
+</ul>
+</nav>
+  <?php
+}
+//fonction qui permet d'afficher le formulaire de connexion dans la barre nav si il est deconnecter
+//ou un bouton de deconnexion si il est connecter
+function getformNavCo(){
+
+    if(isset($_SESSION['pseudo'])): ?>
         <li class="nav-item bs-tooltip-right bs-popover-right">
             <form method="get" class="form-inline" action="../script/deconnexion.php ">
                 <input type="submit" value="deconnexion" >
             </form>
         </li>
-<?php }else{ ?>
+    <?php else: ?>
         <li class="nav-item bs-tooltip-right bs-popover-right">
             <form method="post" class="form-inline" action="../script/connexion.php">
                 <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" class="form-control mr-sm-2">
@@ -85,11 +96,8 @@ function getNav(){
         </li>
 
         <?php
-    }
-    ?>
-</ul>
-</nav>
-  <?php
+    endif;
+
 }
 
 //fonction qui permet de d'afficher le bon contenu correspondant au ancre de ma barre nav
