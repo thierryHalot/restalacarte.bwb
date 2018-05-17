@@ -21,9 +21,8 @@ function getNav(){
         //gestion de l'affichage de mon url sans l'extenssion
         $Ressource = basename($fichiers, '.php');
 
-        //j'enleve de la vue l'extension et je remplace les underscore par des espace
-        $Fichier = explode("_", basename($fichiers, '.php'));
-        $nomFichier = implode(" ", $Fichier);
+
+        $nomFichier = supprNavExtension($fichiers);
 
 
             //si il y a des dossier avec des points,je les enleves de la vue
@@ -68,13 +67,20 @@ function getNav(){
                 }
         }
     }
-    ?></div></div><?php
-
-            getformNavCo();
-    ?>
+    ?></div></div>
+            <?php getformNavCo(); ?>
 </ul>
 </nav>
   <?php
+}
+//fonction qui prend pour argument une chaine de caractere et
+// qui permet de remplacer des '_' par des espace et de suprimer l'extension .php si il en a une
+function supprNavExtension($fichier){
+
+    //j'enleve de la vue l'extension et je remplace les underscore par des espace
+    $Fichier = explode("_", basename($fichier, '.php'));
+    $nomFichier = implode(" ", $Fichier);
+    return $nomFichier;
 }
 //fonction qui permet d'afficher le formulaire de connexion dans la barre nav si il est deconnecter
 //ou un bouton de deconnexion si il est connecter
